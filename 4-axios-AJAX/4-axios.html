@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+</head>
+<body>
+	<button>GET</button>
+	<button>POST</button>
+	<button>AJAX</button>
+
+	<script>
+		const btns = document.querySelectorAll('button');
+		axios.defaults.baseURL = 'http://127.0.0.1:8000'
+		btns[0].onclick = function(){
+			//GET
+			axios.get('/axios-server',{
+				//参数
+				params: {
+					id:100,
+					vip:7
+				},
+				//请求头信息
+				headers: {
+					name: 'yyy',
+					age: 18
+				}
+			}).then(res => {
+				console.log(res);
+			})
+		}
+		btns[1].onclick = function(){
+		axios.post('/axios-server',{
+			username: 'admin',
+			password: 'admin'
+		},{
+		//参数
+		params: {
+			id: 89,
+			vip: 9
+		},
+		//请求头
+			headers: {
+				height: 60,
+				width: 90
+			}
+		})
+	}
+		btns[2].onclick = function(){
+			axios({
+				//请求方法
+				method: 'POST',
+				url: '/axios-server',
+				params: {
+					vip:6,
+					level: 30
+				},
+				headers: {
+					a:200,
+					b:300
+				},
+				data: {
+					username: 'admin',
+					password: 'admin'
+				}
+			}).then(res => {
+				console.log(res);
+				console.log(res.data);
+				console.log(res.status);
+				console.log(res.statusText);
+				console.log(res.headers);
+
+			})
+		}
+	</script>
+
+</body>
+</html>
